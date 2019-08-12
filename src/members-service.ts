@@ -1,6 +1,9 @@
 import fs from 'fs'
 import yaml from 'js-yaml'
 
+/**
+ * members.yaml 을 관리하기 위한 서비스
+ */
 export class MembersService {
   data: {
     admin: Set<string>

@@ -1,15 +1,20 @@
+/**
+ * 메인 CLI 엔트리 파일
+ */
 import Octokit from '@octokit/rest'
 import { GitHubService } from './github'
 import { MembersService } from './members-service'
 import path from 'path'
 
 const org = 'fast-ai-kr'
+// TRUE => API로 멤버 추가 삭제 실행함
 const shouldSubmit = !!process.env.SHOULD_SUBMIT || false
 
 if (shouldSubmit) {
   console.log('Running in the production mode')
 }
 
+// Octokit 클라이언트 만듬
 function buildOctokit(): Octokit {
   const auth = process.env.GITHUB_AUTH
   if (!auth) {
@@ -20,7 +25,7 @@ function buildOctokit(): Octokit {
   })
 }
 
-async function main(send = false) {
+async function main(shouldSubmit: boolean = false) {
   const service = new GitHubService(buildOctokit(), { org })
   const membersService = new MembersService(path.resolve('members.yaml'))
 
@@ -45,7 +50,7 @@ async function main(send = false) {
     newAdminsToDelete,
   })
 
-  if (send) {
+  if (shouldSubmit) {
     return Promise.all(
       newMembersToAdd
         .map(m => service.inviteToMaintainerTeam(m))

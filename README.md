@@ -2,7 +2,7 @@
 
 ## Maintainer의 역할
 
-- fast.ai 강의 관련, fast.ai 에 포함된 알고리즘 관련 영어원문의 번역 저장소 관리 
+- fast.ai 강의 관련, fast.ai 에 포함된 알고리즘 관련 영어원문의 번역 저장소 관리
 - fast.ai 를 이용한 팀 프로젝트, 개인 프로젝트등 fast.ai KR 커뮤니티 그룹원들간 공개/공유를 하고자 하는 경우
 
 이외에도 활용 방도가 많을 수 있지만, 일단은 두 가지 정도를 생각 중입니다. 점점 영역을 넓힐 수 있으면 좋겠군요.
@@ -15,6 +15,4 @@
 
 ## 신청 방법
 
-https://github.com/fast-ai-kr/signup-req/issues/1
-
-에 가입 신청 요청을 @fast-ai-kr/admin 핑과 함께 남겨주세요.
+[members.yaml](./members.yaml) 에 GitHub username을 추가해주세요.

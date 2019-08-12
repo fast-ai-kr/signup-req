@@ -9,10 +9,12 @@
 
 ## Maintainer의 자격
 
-원하시는 분들에 한해서 github organization 가입을 받고 있습니다.
+원하시는 분들에 한해서 github organization 가입을 받고 있습니다. 
+
+**그룹의 깃헙 리포를 추가하거나 이슈를 닫는 등 "운영" 적인 측면에 참여하고 싶은신 분들을 위한 용도라고 보시면 될 것 같습니다.**
+
 기여는 GitHub의 일반적인 프로세스인 Fork - Pull Request를 통해서 여전히 가능합니다.
-그룹의 깃헙 리포를 추가하거나 이슈를 닫는 등 "운영" 적인 측면에 참여하고 싶은신 분들을 위한 용도라고 보시면 될 것 같습니다.
 
 ## 신청 방법
 
-[members.yaml](./members.yaml) 에 GitHub username을 추가해주세요.
+[members.yaml](./members.yaml) 에 GitHub username을 추가후 PR을 보내주세요.

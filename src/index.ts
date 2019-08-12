@@ -37,11 +37,20 @@ async function main(shouldSubmit: boolean = false) {
     return m.login
   })
 
+  // 추가 해야 되는 새로운 members
+  // = members.yaml 에 있는 members
+  // - 현재 GitHub Org 에 등록 된 members 제외
+  // - Pending Invitation 제외
   const newMembersToAdd = membersService.getMembersToAdd(
     currentMembers.concat(pendingMembers),
   )
+
+  // 제거 되어야 하는 members
+  // = 현재 GitHub Org 에 등록 된 members
+  // - members.yaml 에 있는 members 제외
   const newMembersDelete = membersService.getMembersToDelete(currentMembers)
 
+  // 동일 로직 but for admins
   const currentAdmins = (await service.getAdminMembers()).map(m => m.login)
   const newAdminsToAdd = membersService.getMembersToAdd(
     currentAdmins.concat(pendingMembers),

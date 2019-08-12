@@ -56,6 +56,17 @@ async function main(shouldSubmit: boolean = false) {
     currentAdmins.concat(pendingMembers),
     true,
   )
+
+  // TODO: 만약 user가 toAdd에 존재한다면 toDelete에서 제외되어야 한다.
+  //
+  // For example, if an user switches from members to admin
+  //
+  // Current behavior:
+  // The user will be removed from members,
+  // and the user will be added to the admin. So the result is undefined.
+  //
+  // Expected:
+  // User doesn't get removed from members but just update to admin.
   const newAdminsToDelete = membersService.getMembersToDelete(
     currentAdmins,
     true,

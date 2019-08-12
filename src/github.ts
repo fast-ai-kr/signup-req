@@ -93,6 +93,14 @@ export class GitHubService {
     return this.getMembersInOrg(getMaintainerMembersCacheId, false)
   }
 
+  async getPendingInvitations(): Promise<
+    Octokit.OrgsListPendingInvitationsResponse
+  > {
+    return this.octokit.orgs
+      .listPendingInvitations({ org: this.config.org })
+      .then(res => res.data)
+  }
+
   private async getMembersInOrg(cacheId: string, admin: boolean) {
     const ret = this.cache.get(cacheId)
     if (ret) return Promise.resolve(ret)

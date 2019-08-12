@@ -33,17 +33,27 @@ async function main(shouldSubmit: boolean = false) {
     m => m.login,
   )
 
-  const newMembersToAdd = membersService.getMembersToAdd(currentMembers)
+  const pendingMembers = (await service.getPendingInvitations()).map(m => {
+    return m.login
+  })
+
+  const newMembersToAdd = membersService.getMembersToAdd(
+    currentMembers.concat(pendingMembers),
+  )
   const newMembersDelete = membersService.getMembersToDelete(currentMembers)
 
   const currentAdmins = (await service.getAdminMembers()).map(m => m.login)
-  const newAdminsToAdd = membersService.getMembersToAdd(currentAdmins, true)
+  const newAdminsToAdd = membersService.getMembersToAdd(
+    currentAdmins.concat(pendingMembers),
+    true,
+  )
   const newAdminsToDelete = membersService.getMembersToDelete(
     currentAdmins,
     true,
   )
 
   console.log({
+    pendingMembers,
     newMembersToAdd,
     newMembersDelete,
     newAdminsToAdd,

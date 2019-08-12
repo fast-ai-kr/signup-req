@@ -6,6 +6,10 @@ import path from 'path'
 const org = 'fast-ai-kr'
 const shouldSubmit = !!process.env.SHOULD_SUBMIT || false
 
+if (shouldSubmit) {
+  console.log('Running in the production mode')
+}
+
 function buildOctokit(): Octokit {
   const auth = process.env.GITHUB_AUTH
   if (!auth) {

@@ -6,6 +6,10 @@
   "author": "fast-ai-kr",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "prod:start": "SHOULD_SUBMIT=true ts-node src/index.ts"
+  },
   "dependencies": {
     "@octokit/rest": "^16.28.7",
     "js-yaml": "^3.13.1",

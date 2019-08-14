@@ -1,6 +1,15 @@
 language: node_js
-if: branch = master
 node_js:
   - "lts/*"
-script:
-  yarn prod:start
+
+jobs:
+  include:
+    - stage: test
+      script: yarn test
+    - stage: submit
+      script: yarn prod:start
+
+stages:
+  - test
+  - name: submit
+    if: branch = master

@@ -8,7 +8,8 @@
   "private": false,
   "scripts": {
     "start": "ts-node src/index.ts",
-    "prod:start": "SHOULD_SUBMIT=true ts-node src/index.ts"
+    "prod:start": "SHOULD_SUBMIT=true ts-node src/index.ts",
+    "test": "jest"
   },
   "dependencies": {
     "@octokit/rest": "^16.28.7",
@@ -16,8 +17,15 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.17",
     "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.7.1",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

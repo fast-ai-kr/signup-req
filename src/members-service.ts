@@ -32,7 +32,7 @@ export class MembersService {
     this.data.admin.add(member)
   }
 
-  hadAdmin(member: string): boolean {
+  hasAdmin(member: string): boolean {
     return this.data.admin.has(member)
   }
 

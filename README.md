@@ -1,5 +1,7 @@
 # GitHub Org fast-ai-kr Maintainer 가입 신청 리포입니다.
 
+[![Build Status](https://travis-ci.com/fast-ai-kr/signup-req.svg?branch=master)](https://travis-ci.com/fast-ai-kr/signup-req)
+
 ## Maintainer의 역할
 
 - fast.ai 강의 관련, fast.ai 에 포함된 알고리즘 관련 영어원문의 번역 저장소 관리
@@ -9,7 +11,7 @@
 
 ## Maintainer의 자격
 
-원하시는 분들에 한해서 github organization 가입을 받고 있습니다. 
+원하시는 분들에 한해서 github organization 가입을 받고 있습니다.
 
 **그룹의 깃헙 리포를 추가하거나 이슈를 닫는 등 "운영" 적인 측면에 참여하고 싶은신 분들을 위한 용도라고 보시면 될 것 같습니다.**
 

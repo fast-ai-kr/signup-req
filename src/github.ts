@@ -1,4 +1,4 @@
-import Octokit from '@octokit/rest'
+import { Octokit, RestEndpointMethodTypes } from '@octokit/rest'
 
 export interface GitHubServiceConfig {
   // org name: fast-ai-kr
@@ -12,7 +12,11 @@ export class GitHubService {
   /**
    * @org/admin 혹은 @org/maintainer team 오브젝트 반환
    */
-  async getTeamByName(name: string): Promise<Octokit.TeamsGetByNameResponse> {
+  async getTeamByName(
+    name: string,
+  ): Promise<
+    RestEndpointMethodTypes['teams']['getByName']['response']['data']
+  > {
     if (this.cache.has(name)) {
       return Promise.resolve(this.cache.get(name))
     }
@@ -25,7 +29,9 @@ export class GitHubService {
       })
   }
 
-  async getTeams(): Promise<Octokit.TeamsListResponse> {
+  async getTeams(): Promise<
+    RestEndpointMethodTypes['teams']['list']['response']['data']
+  > {
     const getTeamsCacheId = '__TEAMS__'
 
     if (this.cache.has(getTeamsCacheId))
@@ -50,9 +56,11 @@ export class GitHubService {
    */
   async inviteToMaintainerTeam(username: string) {
     const maintainerTeam = await this.getTeamByName('maintainer')
-    return this.octokit.teams.addOrUpdateMembership({
+    return this.octokit.teams.addOrUpdateMembershipForUserInOrg({
       team_id: maintainerTeam.id,
       username,
+      org: maintainerTeam.organization.name,
+      team_slug: maintainerTeam.slug,
     })
   }
 
@@ -60,7 +68,7 @@ export class GitHubService {
    * Organization Owner로 초대함
    */
   async inviteToAdminTeam(username: string) {
-    return this.octokit.orgs.addOrUpdateMembership({
+    return this.octokit.orgs.setMembershipForUser({
       org: this.config.org,
       username,
       role: 'admin',
@@ -71,7 +79,7 @@ export class GitHubService {
    * Org에서 member 추방
    */
   async removeMember(username: string) {
-    return this.octokit.orgs.removeMembership({
+    return this.octokit.orgs.removeMembershipForUser({
       org: this.config.org,
       username,
     })
@@ -80,7 +88,9 @@ export class GitHubService {
   /**
    * Owners 반환
    */
-  async getAdminMembers(): Promise<Octokit.OrgsListMembersResponse> {
+  async getAdminMembers(): Promise<
+    RestEndpointMethodTypes['orgs']['listMembers']['response']['data']
+  > {
     const getAdminMembersCacheId = '__GET_ADMIN_MEMEBERS_CACHE_ID__'
     return this.getMembersInOrg(getAdminMembersCacheId, true)
   }
@@ -88,20 +98,27 @@ export class GitHubService {
   /**
    * 일반 Maintainers 반환
    */
-  async getMaintainerMembers(): Promise<Octokit.OrgsListMembersResponse> {
+  async getMaintainerMembers(): Promise<
+    RestEndpointMethodTypes['orgs']['listMembers']['response']['data']
+  > {
     const getMaintainerMembersCacheId = '__GET_MAINTAINER_MEMBERS_CACHE_ID'
     return this.getMembersInOrg(getMaintainerMembersCacheId, false)
   }
 
   async getPendingInvitations(): Promise<
-    Octokit.OrgsListPendingInvitationsResponse
+    RestEndpointMethodTypes['orgs']['listPendingInvitations']['response']['data']
   > {
     return this.octokit.orgs
       .listPendingInvitations({ org: this.config.org })
       .then(res => res.data)
   }
 
-  private async getMembersInOrg(cacheId: string, admin: boolean) {
+  private async getMembersInOrg(
+    cacheId: string,
+    admin: boolean,
+  ): Promise<
+    RestEndpointMethodTypes['orgs']['listMembers']['response']['data']
+  > {
     const ret = this.cache.get(cacheId)
     if (ret) return Promise.resolve(ret)
     return this.octokit.orgs

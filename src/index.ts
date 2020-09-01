@@ -1,7 +1,7 @@
 /**
  * 메인 CLI 엔트리 파일
  */
-import Octokit from '@octokit/rest'
+import { Octokit } from '@octokit/rest'
 import { GitHubService } from './github'
 import { MembersService } from './members-service'
 import path from 'path'

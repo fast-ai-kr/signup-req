@@ -93,4 +93,8 @@ async function main(shouldSubmit: boolean = false) {
   return Promise.resolve(true)
 }
 
-main(shouldSubmit).then(console.log)
+main(shouldSubmit)
+  .then(console.log)
+  .catch(err => {
+    console.warn('failed during Promise.all. See the error => ', err)
+  })

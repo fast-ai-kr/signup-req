@@ -1,6 +1,11 @@
 import fs from 'fs'
 import yaml from 'js-yaml'
 
+export interface Config {
+  members: string[]
+  admin: string[]
+}
+
 /**
  * members.yaml 을 관리하기 위한 서비스
  */
@@ -15,7 +20,12 @@ export class MembersService {
       admin: new Set(),
       members: new Set(),
     }
-    const membersDataFile = yaml.safeLoad(fs.readFileSync(filename, 'utf8'))
+    const membersDataFile = yaml.safeLoad(
+      fs.readFileSync(filename, 'utf8'),
+    ) as Config
+    if (!membersDataFile) {
+      throw new Error('unable to find a filename: ' + filename)
+    }
     this.data.members = new Set(membersDataFile.members)
     this.data.admin = new Set(membersDataFile.admin)
   }

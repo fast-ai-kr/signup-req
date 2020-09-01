@@ -12,17 +12,17 @@
     "test": "jest"
   },
   "dependencies": {
-    "@octokit/rest": "^16.28.7",
-    "js-yaml": "^3.13.1",
-    "typescript": "^3.5.3"
+    "@octokit/rest": "^18.0.4",
+    "js-yaml": "^3.14.0",
+    "typescript": "^4.0.2"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.17",
-    "@types/js-yaml": "^3.12.1",
-    "@types/node": "^12.7.1",
-    "jest": "^24.8.0",
-    "ts-jest": "^24.0.2",
-    "ts-node": "^8.3.0"
+    "@types/jest": "^26.0.12",
+    "@types/js-yaml": "^3.12.5",
+    "@types/node": "^14.6.2",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0"
   },
   "jest": {
     "preset": "ts-jest",

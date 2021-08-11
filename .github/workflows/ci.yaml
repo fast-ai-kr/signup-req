@@ -22,3 +22,5 @@ jobs:
 
       - run: yarn prod:start
         if: ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' }}
+        env:
+          GITHUB_AUTH: ${{ secrets.TOKEN_GITHUB }}

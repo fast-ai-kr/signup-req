@@ -1,15 +1,15 @@
 pull_request_rules:
   - name: Automatic merge on approval
     conditions:
-      - "#approved-reviews-by>=1"
-      - check-success=Travis CI - Branch
+      - '#approved-reviews-by>=1'
+      - check-success=build-and-test
     actions:
       merge:
         method: merge
   - name: automatic merge for Dependabot pull requests
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
-      - check-success=Travis CI - Branch
+      - check-success=build-and-test
     actions:
       merge:
         method: merge

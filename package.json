@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^18.0.4",
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^4.1.1",
     "typescript": "^4.0.2"
   },
   "devDependencies": {
